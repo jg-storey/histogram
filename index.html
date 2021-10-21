@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+    
+    <title>Histogram</title>
+</head>
+<body>
+    <canvas id="bar-chart" width="400" height="400"></canvas>
+
+
+<script>
+
+var bar_ctx = document.getElementById('bar-chart').getContext('2d');
+
+var blue_red_gradient = bar_ctx.createLinearGradient(0, 0, 0, 400);
+blue_red_gradient.addColorStop(0, 'red');
+blue_red_gradient.addColorStop(1, 'blue');
+
+var readings = [100,19,3,8,50,1]
+
+
+var bar_chart = new Chart(bar_ctx, {
+    type: 'bar',
+    data: {
+        labels: ["1", "2", "3", "4", "5", "6"],
+        datasets: [{
+            label: 'Difference Signal',
+            data: readings,
+						backgroundColor: blue_red_gradient,
+						hoverBackgroundColor: blue_red_gradient,
+						hoverBorderWidth: 2,
+						hoverBorderColor: 'purple'
+        }]
+    },
+    options: {
+        scales: {
+                y: {
+                    beginAtZero: true,
+                    max:100
+                }
+            },
+            maintainAspectRatio: false,
+            responsive: false
+    }
+});
+
+
+function tick(){
+    for(var i = 0; i<6; i++){
+        readings[i]=Math.random()*100
+    }
+    bar_chart.update()
+}
+
+
+let start = 0;
+
+function animate(timestamp) { 
+  const elapsed = timestamp - start;
+  if (elapsed > 1000) {
+    start = timestamp;
+    tick();
+  }
+  requestAnimationFrame(animate); 
+}
+
+requestAnimationFrame(animate);
+
+
+    
+    </script>
+
+</body>
+</html>
