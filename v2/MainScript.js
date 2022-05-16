@@ -78,6 +78,8 @@ function createTimeline() {
         //console.log(dataObject);
     }
 
+    console.log("commented out ajaxSetup for debug purposes");
+    /*
     $.ajaxSetup({
         headers: {
             "accept": "application/json"
@@ -89,7 +91,7 @@ function createTimeline() {
             }
 
         }
-    });
+    });*/
 
     var milPerpx = 2880; //Set a default graph scrolling rate
 
