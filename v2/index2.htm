@@ -1,1 +1,279 @@
 
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Magnet monitor</title>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <script type="text/javascript" src="smoothie.js"></script>
+    <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="chart.min.js"></script>
+    <script type="text/javascript" src="MainScript.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>-->
+
+</head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+
+
+<body onload="createTimeline()">
+    <!-- Header section at the top of the webpage
+        Displays the title and the RRI logo -->
+    <div class="header">
+        <h1 target="titleText">Magnet Monitor</h1>
+        <img class="logo" src="RRIlogo.png" alt="RRI Logo">
+
+    </div>
+
+
+    <!-- User interface panel,
+        Gives the user control over the system  -->
+    <div id="userInterface" class="userInterface">
+        <div class="uiSection">
+            <div class="uiCurrent">
+                Current
+                <br>
+                <span id="currentDisplay"></span>
+            </div>
+        </div>
+
+        <div class="uiSection">
+            <div style="height: 50%;">
+                <h2 id="uiHeader" class="uiHeader" style="margin: 0px;">Header</h2>
+                <span id="UItxt" style="font-size: small;">Vacuum &emsp; Heat/Cool &emsp; Energise</span> <br>
+                <canvas id="uiCanvas" width="200%" height="40%"></canvas>
+            </div>
+            <!-- <div class="buttonTextWrapper"> -->
+            <!-- <div id="b1Text" class="buttonText" onclick="pressButton(1)">Button 1</div> -->
+            <div id="uiTextDisplay" class="buttonText">
+                <h4 id="uiTextL0" style="margin: 0px;">
+                    </h6>
+                    <h4 id="uiTextL1" style="margin: 0px;">
+                        </h6>
+                        <h4 id="uiTextL2" style="margin: 0px;">
+                            </h6>
+                            <h4 id="uiTextL3" style="margin: 0px;">
+                                </h6>
+                                <h4 id="uiTextL4" style="margin: 0px;">
+                                    </h6>
+                                    <h4 id="uiTextL5" style="margin: 0px;">
+                                        </h6>
+            </div>
+            <!-- <div id="b2Text" class="buttonText" onclick="pressButton(2)">Button 2</div> -->
+            <!-- </div> -->
+        </div>
+
+        <!-- <br>Time Period 1: <input id="time1Config" class="timeConfig" type="text" value="2">(min)
+            <br>Time Period 2: <input id="time2Config" class="timeConfig" type="text" value="600">(min) -->
+    </div>
+
+    <div id="tabContainer">
+        <!-- Tab links -->
+        <div class="tabLinkContainer">
+            <button class="tablinks" onclick="openTab(event, 'overviewTab')" id="defaultOpen">Overview</button>
+            <button class="tablinks" onclick="openTab(event, 'TgraphTab')">Temperature</button>
+            <button class="tablinks" onclick="openTab(event, 'VgraphTab')">Voltage</button>
+            <button class="tablinks" onclick="openTab(event, 'histogramTab')">Delta V</button>
+        </div>
+
+
+        <div id="tabPanels"></div>
+        <div id="overviewTab" class="tabcontent">
+            
+            <div class="OVGraphWrapper">
+                    
+                <div id="OVTgraph" class="OVGraph">
+                    
+                    <h3 class="graphHeader">Temperature overview
+                        <!--<span onclick="showMore('T')" class="showMoreText">[Show More]</span>-->
+                    </h3>
+                    <canvas id="OVTcanvas" class="OVCharts"></canvas>
+                </div>
+                <div id="OVVgraph" class="OVGraph">
+                    
+                    <h3 class="graphHeader">Voltage overview
+                        <!--<span onclick="showMore('V')" class="showMoreText">[Show More]</span>-->
+                    </h3>
+                    <canvas id="OVVcanvas" class="OVCharts"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div id="TgraphTab" class="tabcontent">
+            <!-- Displays all the graphs -->
+            <div class="allGraphWrapper">
+                
+                
+                <div class="fullGraphWrapper">
+
+                    <!-- Full pressure graph -->
+                    <!--<div id="graphFullP" class="FullGraph">-->
+                    <!-- Graph header with option to go back to overview page -->
+                    <!--<h3 class="graphHeader">All pressure sensors
+                        <span onclick="showLess('V')" class="showMoreText">[Show Less]</span>
+                    </h3>-->
+                    <!-- Canvas for time period 1 -->
+                    <!--<canvas id="FullPcanvasA" class="FullCharts"></canvas>-->
+                    <!-- Canvas for time period 2 -->
+                    <!--<canvas id="FullPcanvasB" class="FullCharts"></canvas>
+                </div>-->
+                    <!-- Full temperature graph -->
+                    
+                    <div id="graphFullT" class="FullGraph">
+                        <!-- Graph header with option to go back to overview page -->
+                        <!--<h3 class="graphHeader">All temperature sensors
+                        <span onclick="showLess('V')" class="showMoreText">[Show Less]</span>
+                         </h3>-->
+                         <h3 class="graphHeader">All temperature sensors</h3>
+                        <!-- Canvas for time period 1 -->
+                        <!--<canvas id="FullTcanvasA" class="FullCharts"></canvas>-->
+                        <!-- Canvas for time period 2 -->
+                        <canvas id="FullTcanvasB" class="FullCharts"></canvas>
+                    </div>
+                    
+
+                    <!-- Graph options -->
+                    <div class="optionsG" ">
+
+                        <div class="graphButtonsWrapper">
+                            <!-- </br> -->
+                            <div id="showAll" onclick="showAllLines()" class="showHideLines showAllLines">Show all</div>
+                            <div id="showNone" onclick="showNoLines()" class="showHideLines showNoLines">Show None</div>
+                            </br>
+                            <hr>
+                            <div id="TGraphButtons" class="graphButtons"></div>
+                        </div>
+
+
+                        <!-- <input type="radio" id="b1" onclick='toggleLineButton("11")'> </input>
+                        <label for="b1">Button 1</label><br> -->
+                       
+                    </div>
+
+                    <div class="axisControls">
+                        <div>
+                            <h3>Axis Limits</h3>
+                        </div>
+
+                        <ul class="axisLimits">
+                            <li>
+                                <label id="TminLabel">T<sub>min</sub></label>
+                                <input id="Tmin" type="number" step="0.1" value="0.0" />
+                            </li>
+                            <li>
+                                <label id="TmaxLabel">T<sub>max</sub></label>
+                                <input id="Tmax" type="number" step="0.1" value="1.0" />
+                            </li>
+
+                            
+                            <!--<li>
+                            <label>tmin</label>
+                            <input id="tmin" type="number" step="0.1" value="1.0" />
+                            </li>
+                            <li>
+                                <label>tmax</label>
+                                <input id="tmax" type="number" step="0.1" value="1.0" />
+                            </li>-->
+                            <li>
+                                <label></label>
+                                <button onclick="setAxes()">Set</button>
+                            </li>
+                        </ul>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        <div id="VgraphTab" class="tabcontent">
+            <!-- Full voltage graph -->
+            <div class="fullGraphWrapper">
+                <div id="graphFullV" class="FullGraph">
+                    <!-- Graph header with option to go back to overview page -->
+                    <!--<h3 class="graphHeader">All voltage sensors
+                        <span onclick="showLess('V')" class="showMoreText">[Show Less]</span>
+                    </h3>-->
+                    <h3 class="graphHeader">All voltage sensors</h3>
+                    <!-- Canvas for time period 1 -->
+                    <!--<canvas id="FullVcanvasA" class="FullCharts"></canvas>-->
+                    <!-- Canvas for time period 2 -->
+                    <canvas id="FullVcanvasB" class="FullCharts"></canvas>
+                </div>
+                <!-- Graph options -->
+                <div class="optionsG" ">
+
+                    <div class="graphButtonsWrapper">
+                        <!-- </br> -->
+                        <div id="showAll" onclick="showAllLines()" class="showHideLines showAllLines">Show all</div>
+                        <div id="showNone" onclick="showNoLines()" class="showHideLines showNoLines">Show None</div>
+                        </br>
+                        <hr>
+                        <div id="VGraphButtons" class="graphButtons"></div>
+                    </div>
+
+
+                    <!-- <input type="radio" id="b1" onclick='toggleLineButton("11")'> </input>
+                    <label for="b1">Button 1</label><br> -->
+                   
+                </div>
+
+                <div class="axisControls">
+                    <div>
+                        <h3>Axis Limits</h3>
+                    </div>
+
+                    <ul class="axisLimits">
+                        
+
+                        <li>
+                            <label id="VminLabel">V<sub>min</sub></label>
+                            <input id="Vmin" type="number" step="0.1" value="0.0" />
+                        </li>
+                        <li>
+                            <label id="VmaxLabel">V<sub>max</sub></label>
+                            <input id="Vmax" type="number" step="0.1" value="1.0" />
+                        </li>
+                        <!--<li>
+                        <label>tmin</label>
+                        <input id="tmin" type="number" step="0.1" value="1.0" />
+                        </li>
+                        <li>
+                            <label>tmax</label>
+                            <input id="tmax" type="number" step="0.1" value="1.0" />
+                        </li>-->
+                        <li>
+                            <label></label>
+                            <button onclick="setAxes()">Set</button>
+                        </li>
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="histogramTab" class="tabcontent">
+            <canvas id="bar-chart" width="400" height="400"></canvas>
+        </div>
+    </div>
+    </div>
+
+
+
+    <div class="EE" onclick="ee()"></div>
+
+
+    <script>
+        /*open first tab by default*/
+        document.getElementById("defaultOpen").click();
+    </script>
+
+
+</body>
+
+</html>
