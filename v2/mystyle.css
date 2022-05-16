@@ -409,5 +409,30 @@ li{
 padding-bottom:1rem;
 }
 
+#overviewTab{
+    display:grid;
+    grid-template-columns: 0.5fr 0.5fr 0.5fr;
+}
 
+.ovBox{
+    background-color: black;
+    padding:1rem;
+    margin:1rem;
+}
 
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    /*border: 1px solid #dddddd;*/
+    text-align: left;
+    padding: 8px;
+    min-width: 5rem;
+  }
+  
+  tr:nth-child(even) {
+    background-color: rgb(70, 70, 70);
+  }
