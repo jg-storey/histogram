@@ -1,0 +1,413 @@
+/* Main body */
+
+/*
+html {
+    min-height: 100%;
+}
+*/
+
+* {
+    /*outline: solid 1px red;*/
+    box-sizing: border-box;
+    /*overflow: hidden;*/
+}
+
+body {
+    /*position: absolute;*/
+    margin: 8px;
+    /*min-height: 100%;
+    height: 100vh;
+    width: 100vw;*/
+    background-color: #202020;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+
+/* header bar */
+
+.header {
+    /*position: relative;*/
+    overflow: hidden;
+    background-color: #303030;
+    /*margin: 0px;*/
+    color: rgb(255, 255, 255);
+    /*
+    height: 12%;
+    min-height: 50px;
+    max-height: 75px;
+    width: 100%;
+    */
+}
+
+h1[target="titleText"] {
+    /*margin: 0px;
+    position: relative;
+    top: 30%;
+    width: 100%;*/
+    /*position:relative;*/
+    float:left;
+    padding:1rem;
+    margin:0;
+}
+
+.logo {
+    /*position: absolute;
+    right: 0px;
+    top: 0px;
+    min-height: 50px;
+    max-height: 75px;
+    background: transparent;
+    
+    height: 100%;
+    
+    width: auto;
+    */
+    /*display:block;*/
+    float:right;
+    /*margin:0,0,0,1rem;*/
+    max-height:70px;
+    
+}
+
+
+/* User interface section */
+
+.userInterface {
+    /* position: relative; */
+    /* background-color: rgba(205, 92, 92, 0.753); */
+    overflow:hidden;
+    border: 1px solid #ccc;
+    min-height: 25%;
+    width: 100%;
+    height: 25%;
+    padding-top:1rem;
+    margin-top:1rem;
+}
+
+.uiSection {
+    float: left;
+    height: 100%;
+}
+
+.uiSection:nth-child(1) {
+    width: 25%;
+}
+
+.uiCurrent {
+    height: 50%;
+    /* background-color: seagreen; */
+    text-align: center;
+    font-size: xx-large;
+}
+
+.uiSection:nth-child(2) {
+    width: 50%;
+    text-align: center;
+    /* background-color: rebeccapurple; */
+}
+
+.buttonTextWrapper {
+    display: flex;
+    width: 100%;
+    height: 50%;
+    align-items: end;
+}
+
+.buttonText {
+    height: 100%;
+    text-align: center;
+}
+
+
+
+
+
+ 
+  #tabContainer{
+    /*background-color: blueviolet;*/
+    width: 100%;
+    height:70vh;
+   }
+
+
+   /* Style the tab */
+ .tabLinkContainer {
+    overflow: hidden;
+    /*border: 1px solid #ccc;*/
+    background-color: black/*#f1f1f1*/;
+    
+  }
+  
+  /* Style the buttons that are used to open the tab content */
+  .tablinks {
+    margin-top:1rem;
+    margin-right:0.5rem;
+    background-color: inherit;
+    float: left;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0.5rem 2rem;
+    transition: 0.3s;
+    color:white;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tablinks:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current tablink class */
+  .tablinks.active {
+    background-color: rgb(70, 70, 70);
+  }
+  
+
+  
+
+#tabPanels{
+    
+    width:100%;
+    
+    position:relative;
+    
+}
+
+/* Style the tab content */
+.tabcontent {
+    display:block;
+    position:absolute;
+    /*width:100%;*/
+    left:8px;
+    right:8px;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: rgb(70, 70, 70);
+  } 
+
+
+/* Graphs */
+/*
+.allGraphWrapper {
+    position: relative;
+    height: 60%;
+    margin-left: 1%;
+}*/
+/*
+.allGraphWrapper{
+   position:absolute;
+   left:0;
+   top:0;
+}*/
+
+.fullGraphWrapper{
+    display:grid;
+    grid-template-columns: 0.6fr 0.2fr 0.2fr;
+   
+    
+}
+
+.showMoreText {
+    float: right;
+    font-size: 10pt;
+    color: white;
+}
+
+.showMoreText:hover {
+    cursor: pointer;
+    color: grey;
+}
+
+
+/* Overview Graphs */
+
+.OVGraphWrapper {
+    color: white;
+    /*position: absolute;
+    height: 100%;
+    width: 75%;*/
+   
+}
+
+.OVGraph {
+    /*position: relative;*/
+    height: 25vh;
+    width: 100%;
+    margin-bottom: 2px;
+    color: black;
+}
+
+.graphHeader {
+    color: white;
+    margin: 0px;
+    margin-bottom: 0.5rem;
+}
+
+.OVCharts {
+    /*position: absolute;*/
+    width: 100%;
+    height: 80%;
+}
+
+
+/* Full graphs  */
+
+.FullGraph {
+    /*position: absolute;
+    visibility: hidden;
+    height: 100%;
+    width: 60%;*/
+    /* background-color: rgb(47, 146, 228); */
+    /*background-color: yellow;*/
+    /*background-color: yellow;*/
+    /*width:60%;*/
+    height:60vh;
+    /*float:left;*/
+}
+
+.FullCharts {
+    /*position: absolute;
+    top: 2rem;*/
+    width: 100%;
+    height: 90%;
+}
+
+
+/* Options for the full graphs */
+
+.optionsG {
+    /*float: right;*/
+    /*position:absolute;*/
+    /*width: 20%;
+    height: 100%;
+    left: 60%;*/
+    height:60vh;
+    /* background-color: indianred; */
+    /*background-color: bisque;*/
+}
+
+.graphButtonsWrapper {
+   height:80%;
+    padding-left:1rem;
+    padding-right:1rem;
+    margin-top:10%;
+}
+
+.showHideLines {
+    width: auto;
+    cursor: pointer;
+}
+
+.showAllLines {
+    float: left;
+}
+
+.showHideLines:hover {
+    background-color: rgb(71, 68, 68);
+}
+
+.showNoLines {
+    /* width: 50%; */
+    float: right;
+    text-align: right;
+}
+
+.showNoLines:hover {
+    background-color: #303030;
+}
+
+.toggleBtn {
+    margin: 0px;
+    float: right;
+}
+
+.switchHeader {
+    margin: 0px;
+}
+
+.buttonDiv {
+    width: 100%;
+}
+
+.buttonDiv:hover {
+    background-color: rgb(71, 68, 68);
+    cursor: pointer;
+}
+
+.buttonValue {
+    float: right;
+    top: 0px;
+}
+
+.graphButtons {
+    width: 100%;
+    height: 90%;
+    overflow: auto;
+    scrollbar-color: rgb(131, 127, 127) #202020;
+    scrollbar-width: thin;
+}
+
+.EE {
+    width: 10px;
+    height: 10px;
+    /* background-color: white; */
+    float: right;
+    bottom: 0px;
+}
+
+.EE:hover {
+    cursor: cell;
+}
+/*
+#Tab2{
+    background-color: aqua;
+}
+*/
+
+#bar-chart{
+    margin-top:20px;
+    margin-left:auto;
+    margin-right:auto;
+    /*padding:2rem;*/
+    background-color: black;
+}
+
+
+
+.axisControls{
+    /*float:right;
+    padding:20px;
+    margin-right:20px;*/
+    /*height:60vh;*/
+    padding-left:2rem;
+    /*background-color: aqua;*/
+}
+
+.axisControls h3{
+    padding-top:10%;
+    margin-top:0;
+}
+
+li label {
+    display: inline-block;
+    width: 4rem;
+
+}
+
+li input, li button{
+    width:5rem;
+}
+
+ul{
+    list-style-type: none;
+}
+
+li{
+padding-bottom:1rem;
+}
+
+
+
