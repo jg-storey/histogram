@@ -379,6 +379,7 @@ function checkMonitorChanged() {
 }
 
 function updateMonitor() {
+    if(!DEBUG){
     $.get("http://10.0.0.120/data/json?Header=SS72,1&lineTxt=SL2&lightState=D81", function(data) { //Get the data from the host arduino and save it to the dataObject object
         console.log(data);
         blinkLightState = data.lightState;
@@ -395,6 +396,7 @@ function updateMonitor() {
             $("#uiCanvas").show();
         }
     });
+    }
 }
 
 
